@@ -1,0 +1,66 @@
+package utils
+
+import kotlin.Throws
+import model.Student
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+
+object PrinterHelper {
+    @JvmStatic
+    fun showMainMenu() {
+        println("|-------------------------------|")
+        println("| Welcome to StudentGen         |")
+        println("|-------------------------------|")
+        println("| Select 1 option:              |")
+        println("| . 1 Register Student          |")
+        println("| . 2 Find Student              |")
+        println("| . 3 Enroll Student to Course  |")
+        println("| . 4 Show Students Summary     |")
+        println("| . 5 Show Courses Summary      |")
+        println("| . 6 Exit                      |")
+        println("|-------------------------------|")
+    }
+
+    @JvmStatic
+    @Throws(ParseException::class)
+
+    fun createStudentMenu(scanner: Scanner): Student {
+
+        try {
+            println("|-------------------------------------|")
+            println("| . 1 Register Student                |")
+            println("|-------------------------------------|")
+            println("| Enter student name:                 |")
+            val name = scanner.next()
+            println("| Enter student ID:                   |")
+            val id = scanner.next()
+            println("| Enter student email:                |")
+            val email = scanner.next()
+
+            println("| Enter student birth date(mm/dd/yyyy)|")
+            val formatter: DateFormat = SimpleDateFormat("mm/dd/yyyy")
+
+            val birthDate = formatter.parse(scanner.next())
+            println("|-------------------------------------|")
+            val student = Student(id, name, email, birthDate)
+            println("Student Successfully Registered! ")
+            println(student)
+            return student
+
+        }catch (e:Exception)
+        {
+
+            println("A data está incorreta!")
+        }
+        var name = ""
+        var id = ""
+        var email = ""
+        var birthDate = null
+        val student = Student(id, name, email, birthDate)
+
+        return student
+    }
+
+}
